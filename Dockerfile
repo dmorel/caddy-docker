@@ -1,11 +1,11 @@
 FROM alpine:3.4
-MAINTAINER Abiola Ibrahim <abiola89@gmail.com>
+MAINTAINER David Morel <david.morel@amakuru.net>
 
 LABEL caddy_version="0.9.3" architecture="amd64"
 
-ARG plugins=git
+ARG plugins=ipfilter
 
-RUN apk add --no-cache openssh-client git tar curl
+RUN apk add --no-cache openssh-client git tar curl vim bash
 
 RUN curl --silent --show-error --fail --location \
       --header "Accept: application/tar+gzip, application/x-gzip, application/octet-stream" -o - \
