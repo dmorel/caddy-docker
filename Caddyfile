@@ -1,5 +1,5 @@
 http://ns60.amakuru.net, http://www.amakuru.net {
-    redir https://ns60.amakuru.net{uri}
+    redir https://www.amakuru.net{uri}
     log stdout
     errors stdout
 }
