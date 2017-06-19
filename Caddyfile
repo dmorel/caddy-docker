@@ -1,10 +1,10 @@
-http://ns60.amakuru.net, http://www.amakuru.net {
+http://ns60.amakuru.net, http://www.amakuru.net, http://amakuru.net {
     redir https://www.amakuru.net{uri}
     log stdout
     errors stdout
 }
 
-https://ns60.amakuru.net, https://www.amakuru.net {
+https://ns60.amakuru.net, https://www.amakuru.net, https://amakuru.net {
     gzip
     log stdout
     errors stdout
