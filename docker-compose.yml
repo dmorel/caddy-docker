@@ -1,4 +1,4 @@
-version: 3
+version: '2'
 services:
 
     proxy:
@@ -9,13 +9,13 @@ services:
         ports:
             - 443:443
             - 80:80
-        #networks:
-        #- "wordpress"
+        networks:
+            - wordpress
         restart: unless-stopped
 
     wordpress:
         image: wordpress:latest
-        memory: 256m
+        mem_limit: 256m
         environment:
             WORDPRESS_DB_USER: 'wordpress'
             WORDPRESS_DB_PASSWORD: 'pFeRlWKHKfhMKVKxDiEm'
@@ -24,13 +24,11 @@ services:
             - wordpress-www:/var/www/html
         networks:
             - wordpress
-        ports:
-            - 127.0.0.1:82:80
         restart: unless-stopped
 
     mariadb-wordpress:
         image: mariadb:latest
-        memory: 256m
+        mem_limit: 256m
         environment:
             MYSQL_ROOT_PASSWORD: 'DuGnfg6fDBJNLWdvpC2VrxmPUhG2wlJP-7pQM-U4'
         volumes:
@@ -42,3 +40,8 @@ services:
 networks:
     wordpress:
     rocket:
+volumes:
+    mysql-data-wordpress:
+        external: true
+    wordpress-www:
+        external: true

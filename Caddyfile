@@ -9,7 +9,7 @@ https://ns60.amakuru.net, https://www.amakuru.net, https://amakuru.net {
     log stdout
     errors stdout
     tls david.morel@amakuru.net
-    proxy / localhost:82 {
+    proxy / wordpress:80 {
         header_upstream Host {host}
         header_upstream X-Forwarded-For {remote}
         header_upstream X-Forwarded-SSL 1
