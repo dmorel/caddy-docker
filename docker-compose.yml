@@ -1,0 +1,44 @@
+version: 3
+services:
+
+    proxy:
+        image: dmorel/caddy-wordpress:v6
+        build:
+            context: .
+            dockerfile: Dockerfile.proxy
+        ports:
+            - 443:443
+            - 80:80
+        #networks:
+        #- "wordpress"
+        restart: unless-stopped
+
+    wordpress:
+        image: wordpress:latest
+        memory: 256m
+        environment:
+            WORDPRESS_DB_USER: 'wordpress'
+            WORDPRESS_DB_PASSWORD: 'pFeRlWKHKfhMKVKxDiEm'
+            WORDPRESS_DB_HOST: 'mariadb-wordpress'
+        volumes:
+            - wordpress-www:/var/www/html
+        networks:
+            - wordpress
+        ports:
+            - 127.0.0.1:82:80
+        restart: unless-stopped
+
+    mariadb-wordpress:
+        image: mariadb:latest
+        memory: 256m
+        environment:
+            MYSQL_ROOT_PASSWORD: 'DuGnfg6fDBJNLWdvpC2VrxmPUhG2wlJP-7pQM-U4'
+        volumes:
+            - mysql-data-wordpress:/var/lib/mysql
+        networks:
+            - wordpress
+        restart: unless-stopped
+
+networks:
+    wordpress:
+    rocket:

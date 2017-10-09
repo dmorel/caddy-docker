@@ -14,12 +14,11 @@ RUN curl --silent --show-error --fail --location \
  && chmod 0755 /usr/bin/caddy \
  && /usr/bin/caddy -version
 
-EXPOSE 80 443 2015
+EXPOSE 80 443
 VOLUME /root/.caddy
 WORKDIR /srv
 
 COPY Caddyfile /etc/Caddyfile
-COPY index.html /srv/index.html
 
 ENTRYPOINT ["/usr/bin/caddy"]
 CMD ["--conf", "/etc/Caddyfile", "--log", "stdout"]
